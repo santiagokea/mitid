@@ -1,17 +1,35 @@
 <main style="margin:0; padding: 0; box-sizing: border-box; font-weight: 300; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
   <img src="/images/mitid.png" alt="mitid logo">
-  <form onsubmit="return false" 
-    style="width: 100%;">
+
+  <div style="margin-top: 1rem;">
+    username: a@a.com password: passA
+  </div>
+  <div>
+    username: b@b.com password: passB
+  </div>
+
+  <div style="margin-top: 1rem;">
+    If the login is incorrect, then MitID will inform the user and it 
+    will NOT call the parent function.
+  </div>
+
+  <div style="margin-top: 1rem; color: red;">
+    % if error:
+      <span>Error, try again</span>
+    % end
+  </div>
+
+  <form action="/login" method="POST" style="width: 100%;">
     <div style="margin-top: 1rem;">
-      <label for="user_name">MitId user name</label>
-      <input name="user_name" id="user_name" type="text" placeholder="" 
+      <label for="user_email">MitId user name</label>
+      <input name="user_email" id="user_email" type="text" placeholder="" value="a@a.com" 
         style="width: 100%; height: 4rem; margin-top: 0.5rem; 
         font-size: 1.2rem; padding-left: 0.5rem; outline: none; font-size: 1.1rem; font-family: inherit;">
     </div>    
     <div style="margin-top: 1rem;">
-      <label for="user_name">MitId password</label>
-      <input name="user_password" type="password" placeholder=""
+      <label for="user_password">MitId password</label>
+      <input name="user_password" type="password" placeholder="" value="passA"
         style="width: 100%; height: 4rem; margin-top: 0.5rem; 
         font-size: 1.2rem; padding-left: 0.5rem; outline: none; font-size: 1.1rem; font-family: inherit;">
     </div>

@@ -1,4 +1,12 @@
-from bottle import default_app, get, post, view, run, static_file
+from bottle import default_app, get, post, view, redirect, request, response, run, static_file
+import time
+import json
+import jwt
+
+users = {
+  "a@a.com":{"cpr":"221085-4079", "password":"passA"},
+  "b@b.com":{"cpr":"010792-2078", "password":"passB"},
+}
 
 ##############################
 @get("/images/mitid.png")
@@ -9,12 +17,27 @@ def _():
 @get("/")
 @view("mitid")
 def _():
-  return
+  error = request.params.get("error")
+  return dict(error=error)
 
 ##############################
-@post("/api-login")
+@post("/login")
+@view("call_parent")
 def _():
-  return "NO"
+  try:
+    user_email = request.forms.get("user_email")
+    user_password = request.forms.get("user_password")
+    if users[user_email]["password"] != user_password:
+      raise Exception("User not found")
+    iat = int(time.time())
+    exp = iat + 600
+    user = jwt.encode({"cpr":users[user_email]["cpr"], "iat":str(iat), "exp":str(exp)}, "secret", algorithm="HS256")
+    print(user)
+    return dict(jwt=user)
+  except Exception as ex: 
+    print(ex)
+    return redirect("/?error=yes")
+
 
 
 ##############################
