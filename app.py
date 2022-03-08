@@ -44,7 +44,6 @@ def _():
     return dict(jwt=user_jwt)
   except Exception as ex: 
     print("#"*30)
-    print(type(user_jwt))
     print(ex)
     return redirect("/?error=yes")
 
