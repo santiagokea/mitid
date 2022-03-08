@@ -22,7 +22,7 @@ def _():
 @view("call_parent")
 def _():
   try:
-
+    return "ok"
     users = {
       "a@a.com":{"cpr":"221085-4079", "password":"passA"},
       "b@b.com":{"cpr":"010792-2078", "password":"passB"},
