@@ -30,13 +30,13 @@ def _():
 
     user_email = request.forms.get("user_email")
     user_password = request.forms.get("user_password")
+    return "ok"
     if users[user_email]["password"] != user_password:
       raise Exception("User not found")
     iat = int(time.time())
     exp = iat + 600
     user_jwt = jwt.encode({"cpr":users[user_email]["cpr"], "iat":str(iat), "exp":str(exp)}, "secret", algorithm="HS256")
     response.set_cookie("mitid", user_jwt, expires=exp, httponly=True)
-    return "ok"
     return dict(jwt=user_jwt)
   except Exception as ex: 
     print("#"*30)
