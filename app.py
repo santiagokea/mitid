@@ -37,7 +37,7 @@ def _():
     user_jwt = jwt.encode({"cpr":users[user_email]["cpr"], "iat":str(iat), "exp":str(exp)}, "secret", algorithm="HS256")
     print(type(user_jwt))
     # response.set_cookie("mitid", user_jwt, expires=exp, httponly=True)
-    response.set_cookie("mitid", user_jwt)
+    response.set_cookie("mitid", "user_jwt")
     return dict(jwt=user_jwt)
   except Exception as ex: 
     print("#"*30)
