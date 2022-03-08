@@ -42,7 +42,7 @@ def _():
   except Exception as ex: 
     print("#"*30)
     print(ex)
-    return redirect("/?error=yes")
+    return redirect(f"/?error=yes&ex={ex}")
 
 
 
