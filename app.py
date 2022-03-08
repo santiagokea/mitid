@@ -3,10 +3,7 @@ import time
 import json
 import jwt
 
-users = {
-  "a@a.com":{"cpr":"221085-4079", "password":"passA"},
-  "b@b.com":{"cpr":"010792-2078", "password":"passB"},
-}
+
 
 ##############################
 @get("/images/mitid.png")
@@ -25,6 +22,12 @@ def _():
 @view("call_parent")
 def _():
   try:
+
+    users = {
+      "a@a.com":{"cpr":"221085-4079", "password":"passA"},
+      "b@b.com":{"cpr":"010792-2078", "password":"passB"},
+    }
+
     user_email = request.forms.get("user_email")
     user_password = request.forms.get("user_password")
     if users[user_email]["password"] != user_password:
