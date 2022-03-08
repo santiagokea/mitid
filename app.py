@@ -34,9 +34,9 @@ def _():
       raise Exception("User not found")
     iat = int(time.time())
     exp = iat + 600
-    user_jwt = jwt.encode({"cpr":users[user_email]["cpr"], "iat":str(iat), "exp":str(exp)}, "secret", algorithm="HS256").decode("UTF-8")
+    user_jwt = jwt.encode({"cpr":users[user_email]["cpr"], "iat":str(iat), "exp":str(exp)}, "secret", algorithm="HS256")
     print(type(user_jwt))
-    # response.set_cookie("mitid", user_jwt, expires=exp, httponly=True)
+    # response.set_cookie("mitid", user_jwt, expires=exp, httponly=True)    
     response.set_cookie("mitid", user_jwt)
     return dict(jwt=user_jwt)
   except Exception as ex: 
